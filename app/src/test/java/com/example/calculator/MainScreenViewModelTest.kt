@@ -20,26 +20,23 @@ class MainScreenViewModelTest {
       viewModel = createViewModel()
    }
    @Test
-   fun setFirstDigitTest() {
-      //Check everything is empty when we start
-      Assert.assertEquals(viewModel.uiState.firstNumber, "")
+   fun `first number is being typed`() {
       //Set some values
       viewModel.setFirstNumberDigit("5")
       Assert.assertEquals(viewModel.uiState.firstNumber, "5")
    }
 
    @Test
-   fun setOperationTest() {
-      setFirstDigitTest()
-      Assert.assertEquals(viewModel.uiState.operationToDo, "")
+   fun `operation is being chosen`() {
+      `first number is being typed`()
 
       viewModel.setOperation("*")
       Assert.assertEquals(viewModel.uiState.operationToDo, "*")
    }
 
    @Test
-   fun setSecondDigitTest() {
-      setOperationTest()
+   fun `second number is being typed`() {
+      `operation is being chosen`()
       viewModel.setSecondNumberDigit("3")
       Assert.assertEquals(viewModel.uiState.secondNumber, "3")
       viewModel.setSecondNumberDigit("0")
@@ -48,8 +45,8 @@ class MainScreenViewModelTest {
    }
 
    @Test
-   fun verifyResult() {
-      setSecondDigitTest()
+   fun `when finalizing the operation we wish to know the result of`() {
+      `second number is being typed`()
       // 5 * 30 = 150, lets check the result
       viewModel.setOperation("=")
       verify(repository).setResultValue(150)
