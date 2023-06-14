@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.example.calculator.data.CalculatorRepository
 import com.example.calculator.data.Repository
 import com.example.calculator.nav.RouteNavigator
 import com.example.calculator.nav.Screens
@@ -20,7 +21,7 @@ data class MainScreenUIState(
 
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
-    private val repository: Repository,
+    private val repository: CalculatorRepository,
     private val routeNavigator: RouteNavigator
 ): ViewModel(), RouteNavigator by routeNavigator {
 
@@ -31,7 +32,6 @@ class MainScreenViewModel @Inject constructor(
         val result = uiState.firstNumber.toInt().doOperation(uiState.operationToDo, uiState.secondNumber.toInt())
         repository.setResultValue(result)
         navigateToRouteAndPop(Screens.SecondScreen.route)
-
     }
 
 
@@ -57,7 +57,7 @@ class MainScreenViewModel @Inject constructor(
         }
     }
 
-    fun Int.doOperation(charOperator: String, x: Int) = when(charOperator) {
+    private fun Int.doOperation(charOperator: String, x: Int) = when(charOperator) {
         "+" -> this + x
         "-" -> this - x
         "*" -> this * x

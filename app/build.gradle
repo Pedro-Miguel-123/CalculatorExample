@@ -22,7 +22,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.calculator.CustomTestRunner"
         vectorDrawables {
             useSupportLibrary true
         }
@@ -96,6 +96,18 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+
+    //Unit Tests
+    testImplementation "junit:junit:4.13.2"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:4.1.0"
+
+    //Instrumentation Tests
+    androidTestImplementation "androidx.navigation:navigation-testing:2.5.3"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.3.3"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:2.44.2"
+    kaptTest "com.google.dagger:hilt-android-compiler:2.44.2"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:2.44.2"
 
     // === End ===
 

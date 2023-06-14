@@ -1,5 +1,6 @@
 package com.example.calculator.di
 
+import com.example.calculator.data.CalculatorRepository
 import com.example.calculator.data.Repository
 import dagger.Module
 import dagger.Provides
@@ -13,5 +14,5 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideRepository(): Repository = Repository()
+    fun provideRepository(): CalculatorRepository = Repository()
 }
